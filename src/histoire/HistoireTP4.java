@@ -31,10 +31,16 @@ public class HistoireTP4 {
 //		yakuLeNoir.extorquer(marco);
 		
 //		// SCENARIO 4
-		Ronin roro = new Ronin("Roro", "shochu", 60);
-		Commercant marco = new Commercant("Marco",0);
+//		Ronin roro = new Ronin("Roro", "shochu", 60);
+//		Commercant marco = new Commercant("Marco",0);
+//		
+//		roro.direBonjour();
+//		roro.donner(marco);
 		
-		roro.direBonjour();
-		roro.donner(marco);
+//		// SCENARIO 5
+		Yakuza yakuLeNoir = new Yakuza("Yaku le Noir","whisky",45,"Warsong");
+		Ronin roro = new Ronin("Roro", "shochu", 54);
+		
+		roro.provoquer(yakuLeNoir);
 	}
 }
