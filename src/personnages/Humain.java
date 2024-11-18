@@ -1,9 +1,13 @@
 package personnages;
 
 public class Humain {
+	private static final int MEMOIRE_MAX = 30;
+	
 	private String nom;
 	private String boissonFavorite;
 	private int argent;
+	private Humain[] memoire = new Humain[MEMOIRE_MAX];
+	protected int nbConnaissance = 0;
 		
 	public Humain(String nom, String boissonFavorite, int argent) {
 		this.nom = nom;
@@ -50,5 +54,32 @@ public class Humain {
 	
 	protected void perdreArgent(int perte) {
 		argent -= perte;
+	}
+	
+	public void faireConnaissanceAvec(Humain autreHumain) {
+		direBonjour();
+		autreHumain.repondre(this);
+		memoriser(autreHumain);
+	}
+	
+	private void memoriser(Humain humain) {
+		if (nbConnaissance < MEMOIRE_MAX) {
+			memoire[nbConnaissance] = humain;
+			nbConnaissance++;
+		}
+	}
+	
+	private void repondre(Humain humain) {
+		direBonjour();
+		memoriser(humain);
+	}
+	
+	public void listerConnaissance() {
+		StringBuilder texte = new StringBuilder();
+		for (int i = 0; i < nbConnaissance; i++) {
+			texte.append(memoire[i].getNom() + ", ");
+		}
+		if (texte.length() > 2) texte.deleteCharAt(texte.length()-2); // Supprime la dernière virgule
+		parler("Je connais beaucoup de monde dont : " + texte);
 	}
 }
